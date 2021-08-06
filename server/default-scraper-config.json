@@ -1,58 +1,4 @@
 {
-  "torrentgalaxy": {
-    "name": "TorrentGalaxy",
-    "url": "https://torrentgalaxy.to/torrents.php?search={{query}}&sort=id&order=desc&page={{page:0}}",
-    "list": "div.tgxtablerow",
-    "result": {
-      "name": [
-        "div:nth-of-type(4) div a",
-        "@title"
-      ],
-      "url": [
-        "div:nth-of-type(4) div a",
-        "@href"
-      ],
-      "size": "div:nth-of-type(8)",
-      "seeds": "div:nth-of-type(10)"
-    }
-  },
-  "torrentgalaxy/item": {
-    "name": "TorrentGalaxy/item",
-    "url": "https://torrentgalaxy.to{{item}}",
-    "result": {
-      "infohash": [
-        "div.torrentpagetable div.tprow:nth-of-type(7) div:nth-of-type(2)"
-      ]
-    }
-  },
-  "seedpeer": {
-    "name": "SeedPeer",
-    "url": "https://www.seedpeer.me/search/{{query}}?page={{page:1}}",
-    "list": "div.table-container table.table tbody tr",
-    "result": {
-      "name": [
-        "td:first-of-type",
-        "@title"
-      ],
-      "url": [
-        "td:first-of-type a",
-        "@href"
-      ],
-      "size": "td:nth-of-type(3)",
-      "seeds": "td:nth-of-type(4)",
-      "peers": "td:nth-of-type(5)"
-    }
-  },
-  "seedpeer/item": {
-    "name": "SeedPeer/item",
-    "url": "https://www.seedpeer.me{{item}}",
-    "result": {
-      "magnet": [
-        "div.content div.is-one-third p:nth-of-type(3) a",
-        "@href"
-      ]
-    }
-  },
   "eztv": {
     "name": "EZTV",
     "url": "https://eztv.ag/search/{{query}}",
@@ -69,36 +15,6 @@
       ],
       "size": "td:nth-child(4)",
       "seeds": "td:nth-child(6)"
-    }
-  },
-  "1337x": {
-    "name": "1337X",
-    "url": "http://1337x.to/sort-search/{{query}}/seeders/desc/{{page:1}}/",
-    "list": ".box-info-detail table.table tr",
-    "result": {
-      "name": [
-        ".coll-1 a:nth-child(2)"
-      ],
-      "url": [
-        ".coll-1 a:nth-child(2)",
-        "@href"
-      ],
-      "seeds": ".coll-2",
-      "peers": ".coll-3",
-      "size": [
-        ".coll-4",
-        "/([\\d\\.]+ [KMGT]?B)/"
-      ]
-    }
-  },
-  "1337x/item": {
-    "name": "1337X (Item)",
-    "url": "http://1337x.to{{item}}",
-    "result": {
-      "magnet": [
-        "a[href^='magnet:']",
-        "@href"
-      ]
     }
   },
   "abb": {
@@ -154,23 +70,34 @@
       ]
     }
   },
-  "tpb": {
-    "name": "The Pirate Bay",
-    "url": "https://thepiratebay.org/search/{{query}}/{{page:0}}/7//",
-    "list": "#searchResult > tbody > tr",
+  "1337x/item": {
+    "name": "1337X (Item)",
+    "url": "http://1337x.to{{item}}",
     "result": {
-      "name": "a.detLink",
-      "path": [
-        "a.detLink",
-        "@href"
-      ],
       "magnet": [
-        "a[title=Download\\ this\\ torrent\\ using\\ magnet]",
+        "a[href^='magnet:']",
+        "@href"
+      ]
+    }
+  },
+  "1337x": {
+    "name": "1337X",
+    "url": "http://1337x.to/sort-search/{{query}}/seeders/desc/{{page:1}}/",
+    "list": ".box-info-detail table.table tr",
+    "result": {
+      "name": [
+        ".coll-1 a:nth-child(2)"
+      ],
+      "url": [
+        ".coll-1 a:nth-child(2)",
         "@href"
       ],
-      "size": "/Size (\\d+(\\.\\d+).[KMG]iB)/",
-      "seeds": "td:nth-child(3)",
-      "peers": "td:nth-child(4)"
+      "seeds": ".coll-2",
+      "peers": ".coll-3",
+      "size": [
+        ".coll-4",
+        "/([\\d\\.]+ [KMGT]?B)/"
+      ]
     }
   }
 }
