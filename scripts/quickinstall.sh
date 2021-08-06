@@ -15,10 +15,10 @@ if [[ $(id -u) -ne 0 ]]; then
     exit 1
 fi
 
-GHAPI=https://api.github.com/repos/boypt/simple-torrent/releases/latest 
+GHAPI=https://api.github.com/repos/saeedhurzuk/simple-torrent/releases/latest 
 VERSION=${1:-latest}
 if [[ "$VERSION" != "latest" ]]; then
-    GHAPI=https://api.github.com/repos/boypt/simple-torrent/releases/tags/${VERSION}
+    GHAPI=https://api.github.com/repos/saeedhurzuk/simple-torrent/releases/tags/${VERSION}
     echo "The script is trying to install version ${VERSION}"
 fi
 
@@ -56,14 +56,14 @@ systemctl stop cloud-torrent || true
 BINURL=$(wget -qO- $GHAPI | grep browser_download_url | grep "$BINTAG" | grep static | cut -d '"' -f 4 || true)
 if [[ -z $BINURL ]]; then
     echo "It's seems that $VERSION is not a valid version, check release page:"
-    echo "https://github.com/boypt/simple-torrent/releases"
+    echo "https://github.com/saeedhurzuk/simple-torrent/releases"
     exit 1
 fi
 
 echo $BINURL | wget --no-verbose -i- -O- | gzip -d -c > ${CLDBIN}
 chmod 0755 ${CLDBIN}
 
-wget -O /etc/systemd/system/cloud-torrent.service https://raw.githubusercontent.com/boypt/simple-torrent/master/scripts/cloud-torrent.service
+wget -O /etc/systemd/system/cloud-torrent.service https://raw.githubusercontent.com/saeedhurzuk/simple-torrent/master/scripts/cloud-torrent.service
 
 if [[ x${NEEDAUTH^^} == x"Y" ]]; then
     sed -i "s/user:ctorrent/${USERNAME}:${PASSWORD}/" /etc/systemd/system/cloud-torrent.service 
@@ -76,9 +76,9 @@ systemctl enable --now cloud-torrent
 
 cat <<EOF
 #################################################################
-              SimpleTorrent installed successfuly.
+              PrivateTorrent installed successfuly.
 
-Open browser to http://${HOSTIP}:3000/ now!
+Open browser to http://${HOSTIP}:4202/ now!
 
 * Default DownloadDirectory: /root/downloads
 * Default Config file: /root/cloud-torrent.yaml
@@ -86,7 +86,7 @@ Open browser to http://${HOSTIP}:3000/ now!
 * Default Password: ${PASSWORD}
 
 Read the wiki page about changing the default settings.
-    https://github.com/boypt/simple-torrent/wiki/AuthSecurity
+    https://github.com/saeedhurzuk/simple-torrent/wiki/AuthSecurity
 
 #################################################################
 EOF
