@@ -15,7 +15,7 @@ func main() {
 	s := server.Server{
 		Title:  "Private Torrent",
 		Port:   3000, // depreciated
-		Listen: ":4202",
+		Listen: "127.0.0.1:4202",
 	}
 
 	o := opts.New(&s)
