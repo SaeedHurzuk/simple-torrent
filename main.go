@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/boypt/simple-torrent/server"
+	"github.com/SaeedHurzuk/simple-torrent/server"
 	"github.com/jpillora/opts"
 )
 
@@ -13,14 +13,14 @@ var VERSION = "0.0.0-src" //set with ldflags
 
 func main() {
 	s := server.Server{
-		Title:  "SimpleTorrent",
+		Title:  "Private Torrent",
 		Port:   3000, // depreciated
-		Listen: ":3000",
+		Listen: ":4202",
 	}
 
 	o := opts.New(&s)
 	o.Version(VERSION)
-	o.Repo("https://github.com/boypt/simple-torrent")
+	o.Repo("https://github.com/SaeedHurzuk/simple-torrent")
 	o.PkgRepo()
 	o.SetLineWidth(96)
 	o.Parse()
@@ -29,7 +29,7 @@ func main() {
 		log.SetFlags(0)
 	}
 
-	log.Printf("############# SimpleTorrent ver[%s] #############\n", VERSION)
+	log.Printf("############# PrivateTorrent ver[%s] #############\n", VERSION)
 	if err := s.Run(VERSION); err != nil {
 		if errors.Is(err, server.ErrDiskSpace) {
 			log.Println(err)

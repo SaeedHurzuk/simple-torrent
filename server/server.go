@@ -13,15 +13,15 @@ import (
 	"strings"
 	"time"
 
-	"github.com/boypt/simple-torrent/server/httpmiddleware"
+	"github.com/SaeedHurzuk/simple-torrent/server/httpmiddleware"
 
 	"errors"
 
 	"github.com/NYTimes/gziphandler"
+	"github.com/SaeedHurzuk/simple-torrent/engine"
+	ctstatic "github.com/SaeedHurzuk/simple-torrent/static"
 	"github.com/anacrolix/torrent"
 	"github.com/boypt/scraper"
-	"github.com/boypt/simple-torrent/engine"
-	ctstatic "github.com/boypt/simple-torrent/static"
 	"github.com/jpillora/cookieauth"
 	"github.com/jpillora/requestlog"
 	"github.com/jpillora/velox"

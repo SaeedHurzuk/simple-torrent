@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	ctstatic "github.com/boypt/simple-torrent/static"
+	ctstatic "github.com/SaeedHurzuk/simple-torrent/static"
 	"github.com/jpillora/velox"
 )
 

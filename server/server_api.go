@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/boypt/simple-torrent/engine"
+	"github.com/SaeedHurzuk/simple-torrent/engine"
 )
 
 var (
