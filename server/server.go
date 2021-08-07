@@ -260,7 +260,7 @@ func (s *Server) Run(version string) error {
 			log.Println("Listening sock exists, removing", sockPath)
 			os.Remove(sockPath)
 		}
-		log.Println("Listening at", s.Listen)
+		log.Print("Listening at http://127.0.0.1", s.Listen)
 		listener, err = net.Listen("unix", sockPath)
 		if err != nil {
 			log.Fatalln("Failed listening", err)
@@ -271,7 +271,7 @@ func (s *Server) Run(version string) error {
 			os.Chmod(sockPath, uxmod)
 		}
 	} else {
-		log.Println("Listening at", s.Listen)
+		log.Print("Listening at http://127.0.0.1", s.Listen)
 		listener, err = net.Listen("tcp", s.Listen)
 		if err != nil {
 			log.Fatalln("Failed listening", err)
