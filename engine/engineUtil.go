@@ -49,7 +49,7 @@ func (e *Engine) getTorrent(infohash string) (*Torrent, error) {
 	if t, ok := e.ts[infohash]; ok {
 		return t, nil
 	}
-	return nil, fmt.Errorf("Missing torrent %x", infohash)
+	return nil, fmt.Errorf("missing torrent %x", infohash)
 }
 
 func (e *Engine) deleteTorrent(infohash string) {

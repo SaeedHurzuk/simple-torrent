@@ -28,9 +28,9 @@ const (
 )
 
 var (
-	ErrTaskExists    = errors.New("Task already exists")
-	ErrWaitListEmpty = errors.New("Wait list empty")
-	ErrMaxConnTasks  = errors.New("Max conncurrent task reached")
+	ErrTaskExists    = errors.New("task already exists")
+	ErrWaitListEmpty = errors.New("wait list empty")
+	ErrMaxConnTasks  = errors.New("max conncurrent task reached")
 )
 
 //the Engine Cloud Torrent engine, backed by anacrolix/torrent
@@ -71,7 +71,7 @@ func (e *Engine) SetConfig(c *Config) {
 func (e *Engine) Configure(c *Config) error {
 	//recieve config
 	if c.IncomingPort <= 0 {
-		return fmt.Errorf("Invalid incoming port (%d)", c.IncomingPort)
+		return fmt.Errorf("invalid incoming port (%d)", c.IncomingPort)
 	}
 	if c.TrackerList == "" {
 		c.TrackerList = "remote:" + defaultTrackerListURL
@@ -147,6 +147,7 @@ func (e *Engine) Configure(c *Config) error {
 	e.trashDir = path.Join(c.DownloadDirectory, TrashTorrentDir)
 	mkdir(e.cacheDir)
 	mkdir(e.trashDir)
+	mkdir(c.WatchDirectory)
 	e.config = *c
 	return nil
 }
@@ -184,7 +185,7 @@ func (e *Engine) NewTorrentByFilePath(path string) error {
 	// torrent.TorrentSpecFromMetaInfo may panic if the info is malformed
 	defer func() error {
 		if r := recover(); r != nil {
-			err := fmt.Errorf("Error loading new torrent from file %s: %+v", path, r)
+			err := fmt.Errorf("error loading new torrent from file %s: %+v", path, r)
 			log.Println(err)
 			return err
 		}
@@ -355,7 +356,7 @@ func (e *Engine) StartTorrent(infohash string) error {
 	defer t.Unlock()
 
 	if t.Started {
-		return fmt.Errorf("Already started")
+		return fmt.Errorf("already started")
 	}
 	t.Started = true
 	t.StartedAt = time.Now()
@@ -387,7 +388,7 @@ func (e *Engine) StopTorrent(infohash string) error {
 	defer t.Unlock()
 
 	if !t.Started {
-		return fmt.Errorf("Already stopped")
+		return fmt.Errorf("already stopped")
 	}
 
 	if t.t.Info() != nil {
@@ -440,7 +441,7 @@ func (e *Engine) StartFile(infohash, filepath string) error {
 		}
 	}
 	if f == nil {
-		return fmt.Errorf("Missing file %s", filepath)
+		return fmt.Errorf("missing file %s", filepath)
 	}
 	if f.Started {
 		return fmt.Errorf("already started")
@@ -466,7 +467,7 @@ func (e *Engine) StopFile(infohash, filepath string) error {
 		}
 	}
 	if f == nil {
-		return fmt.Errorf("Missing file %s", filepath)
+		return fmt.Errorf("missing file %s", filepath)
 	}
 	if !f.Started {
 		return fmt.Errorf("already stopped")
